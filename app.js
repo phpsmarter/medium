@@ -15,9 +15,6 @@ async function run() {
         
         await page.goto('https://medium.com/tag/cybersecurity');
 
-        //dom element selector 
-        const 
-
         for (let i = 0; i <30; i++) {
 
             let readMore = await page.$$('.postArticle-readMore > .button ');
@@ -51,3 +48,4 @@ async function run() {
 
         browser.close();
     }
+}
