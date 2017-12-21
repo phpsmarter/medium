@@ -15,11 +15,11 @@ async function run() {
         
         await page.goto('https://medium.com/tag/cybersecurity');
 
-        for (let i = 0; i <30; i++) {
+        for (let j = 0; j <30; j++) {
 
             let readMore = await page.$$('.postArticle-readMore > .button ');
 
-            if (readMore.length <=i ){
+            if (readMore.length <=j ){
                 for (let k = 0; k <1000; k++){
                     await page.waitFor(1);
                     await page.keyboard.press('ArrowDown',{delay:5});
@@ -28,14 +28,14 @@ async function run() {
             
             readMore = await page.$$('.postArticle-readMore > .button ');           
 
-            const pathname = await readMore[i].getProperty('pathname');
+            const pathname = await readMore[j].getProperty('pathname');
 
             const pathnameString = await pathname.jsonValue()
             
             if (pathnameString.search('liormarga')> 0){
                 
-                    await readMore[i].click();
-                    for (let j = 0; j <101; j++){
+                    await readMore[j].click();
+                    for (let k = 0; k <101; k++){
                         await page.waitFor(300);
                         await page.keyboard.press('ArrowDown');
                     }
