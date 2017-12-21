@@ -1,0 +1,14 @@
+{
+  "name": "medium",
+  "version": "1.0.0",
+  "description": "read medium.com articles",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lior margalit",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^0.13.0"
+  }
+}
