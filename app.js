@@ -35,7 +35,7 @@ async function run() {
             if (pathnameString.search('liormarga')> 0){
                 
                     await readMore[j].click();
-                    for (let k = 0; k <101; k++){
+                    for (let k = 0; k <100; k++){
                         await page.waitFor(300);
                         await page.keyboard.press('ArrowDown');
                     }
