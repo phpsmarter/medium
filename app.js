@@ -3,7 +3,7 @@ const devices = require('puppeteer/DeviceDescriptors');
 const iPhone = devices['iPhone 6'];
 
 async function run() {
-    for (let i = 1; i <=8; i++) {
+    for (let i = 1; i <=10; i++) {
         const browser = await puppeteer.launch({
                                                 headless: false,
                                                 gpu: false,
@@ -34,13 +34,24 @@ async function run() {
             
             if (pathnameString.search('liormarga')> 0){
                 
-                    await readMore[j].click();
-                    for (let k = 0; k <100; k++){
-                        await page.waitFor(300);
-                        await page.keyboard.press('ArrowDown');
-                    }
+                await readMore[j].click();
+                for (let k = 0; k <20; k++){
+                    await page.waitFor(1000);
+                    
+                    await page.keyboard.press('ArrowDown');
+                }
 
+                let imgs = await page.$$('img');
+                await imgs[2].click();
+
+                await page.keyboard.press('ArrowDown');
                 
+                for (let k = 0; k <30; k++){
+                    await page.waitFor(1000);
+                    
+                    await page.keyboard.press('ArrowDown');
+                }                
+
                 break;
             }
                                                   
