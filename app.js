@@ -15,21 +15,20 @@ async function run() {
         
 
         console.log(i);
-        await page.goto('https://medium.com/tag/cybersecurity');
+        await page.goto('https://medium.com/tag/cybersecurity',{waitUntil: 'networkidle2'});
 
         for (let j = 0; j <30; j++) {
 
             let readMore = await page.$$('.postArticle-readMore > .button ');
 
-            if (readMore.length < j ){
+            while (readMore.length <= j ){
                 for (let k = 0; k <1000; k++){
                     await page.waitFor(1);
                     await page.keyboard.press('ArrowDown',{delay:5});
                 }
+                readMore = await page.$$('.postArticle-readMore > .button '); 
             }
             
-            readMore = await page.$$('.postArticle-readMore > .button ');           
-
             const pathname = await readMore[j].getProperty('pathname');
 
             const pathnameString = await pathname.jsonValue()
@@ -45,7 +44,7 @@ async function run() {
 
                 let imgs = await page.$$('img');
                 if (imgs.length >2) 
-                    await imgs[2].click();
+                    await imgs[4].click();
                 
                 for (let k = 0; k <30; k++){
                     await page.waitFor(1000);
