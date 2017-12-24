@@ -21,7 +21,7 @@ async function run() {
 
             let readMore = await page.$$('.postArticle-readMore > .button ');
 
-            if (readMore.length <=j ){
+            if (readMore.length < j ){
                 for (let k = 0; k <1000; k++){
                     await page.waitFor(1);
                     await page.keyboard.press('ArrowDown',{delay:5});
@@ -46,8 +46,6 @@ async function run() {
                 let imgs = await page.$$('img');
                 if (imgs.length >2) 
                     await imgs[2].click();
-
-                await page.keyboard.press('ArrowDown');
                 
                 for (let k = 0; k <30; k++){
                     await page.waitFor(1000);
