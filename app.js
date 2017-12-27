@@ -1,6 +1,19 @@
 const puppeteer = require('puppeteer');
 const devices = require('puppeteer/DeviceDescriptors');
 const iPhone = devices['iPhone 6'];
+const browseUrl = 'https://medium.com/tag/chrome';
+const READ_MORE_SELECTOR = '.postArticle-readMore > .button ';
+const WRITER = 'liormarga';
+const IMG_SELECTOR = 'img'ף
+
+
+let scrollDown = async (page,delay,pressNum) => {
+    for (let i = 0; i <pressNum; i++){                    
+        await page.keyboard.press('ArrowDown',{delay:delay});
+    }
+}
+
+module.export =scrollDown;
 
 async function run() {
     for (let i = 1; i < 10; i++) {
@@ -13,48 +26,32 @@ async function run() {
 
         const page = await browser.newPage();
         
-
-        console.log(i);
-        await page.goto('https://medium.com/tag/cybersecurity');
+        await page.goto(browseUrl);
 
         for (let j = 0; j <30; j++) {
-
-            let readMore = await page.$$('.postArticle-readMore > .button ');
+            let readMore = await page.$$(READ_MORE_SELECTOR);
 
             if (readMore.length <=j ){
-                for (let k = 0; k <1000; k++){
-                    await page.waitFor(1);
-                    await page.keyboard.press('ArrowDown',{delay:5});
-                }
+                await scrollDown(page,5,1000); 
             }
             
-            readMore = await page.$$('.postArticle-readMore > .button ');           
-
+            readMore = await page.$$(READ_MORE_SELECTOR);           
+            
             const pathname = await readMore[j].getProperty('pathname');
 
             const pathnameString = await pathname.jsonValue()
             
-            if (pathnameString.search('liormarga')> 0){
+            if (pathnameString.search(WRITER)> 0){
                 
                 await readMore[j].click();
-                for (let k = 0; k <30; k++){
-                    await page.waitFor(1000);
-                    
-                    await page.keyboard.press('ArrowDown');
-                }
+                await scrollDown(page,1000,30);
 
-                let imgs = await page.$$('img');
+                let imgs = await page.$$(IMG_SELECTOR);
                 if (imgs.length >2) 
                     await imgs[2].click();
-
-                await page.keyboard.press('ArrowDown');
                 
-                for (let k = 0; k <30; k++){
-                    await page.waitFor(1000);
-                    
-                    await page.keyboard.press('ArrowDown');
-                }                
-
+                await scrollDown(page,1000,30);
+                
                 break;
             }
                                                   
