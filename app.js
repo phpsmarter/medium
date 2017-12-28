@@ -4,7 +4,7 @@ const iPhone = devices['iPhone 6'];
 const browseUrl = 'https://medium.com/tag/chrome';
 const READ_MORE_SELECTOR = '.postArticle-readMore > .button ';
 const WRITER = 'liormarga';
-const IMG_SELECTOR = 'img'ף
+const IMG_SELECTOR = 'img';
 
 
 let scrollDown = async (page,delay,pressNum) => {
