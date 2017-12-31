@@ -15,7 +15,7 @@ let scrollDown = async (page,delay,pressNum) => {
 
 module.export =scrollDown;
 
-async function run() {
+async function readMedium() {
     for (let i = 1; i < 10; i++) {
         const browser = await puppeteer.launch({
                                                 headless: false,
@@ -60,4 +60,5 @@ async function run() {
         browser.close();
     }
 }
-run();
+readMedium();
+module.export = readMedium;
